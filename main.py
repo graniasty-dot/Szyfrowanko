@@ -1,6 +1,6 @@
 import tkinter
 import cmath
-    #DZIAŁA ZROBIONE SZYFROWANIE
+    #DZIAŁA 
 def fenceCipher(string=None, key=None):
     """Funkcja szyfrujaca podany ciag znakow za pomoca szyfru ogrodzeniowego.
     
@@ -24,7 +24,7 @@ def fenceCipher(string=None, key=None):
         encodedstring+=rows[x]
     return encodedstring
     pass
-#w trakcie prac
+    #DZIAŁA
 def fenceDecipher(string=None, key=None):
     length=len(string)
     indexes=["" for i in range(length)]
@@ -49,7 +49,7 @@ def fenceDecipher(string=None, key=None):
 
     return "".join(str (x) for x in indexes)
     pass
-
+    #TODO:columnTransCipher(string=None, key=None):
 def columnTransCipher(string=None, key=None):
     """Funkcja szyfrujaca podany ciag znakow za pomoca transpozycji kolumnowej.
 
@@ -58,14 +58,14 @@ def columnTransCipher(string=None, key=None):
         key (int, optional): Klucz szyfrujacy. Defaults to None.
     """
     pass
-
+    #TODO: columnTransDecipher():
 def columnTransDecipher():
     pass
-
+    #TODO:lookForCipher():
 def lookForCipher():
     pass
 
-
+    #TODO:INTERFEJS
 if __name__ == "__main__":
 
     encoded=fenceCipher('ALAMAKOTAAKOTMAALE',4)
