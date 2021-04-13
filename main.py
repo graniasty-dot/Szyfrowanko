@@ -33,24 +33,21 @@ def fenceDecipher(string=None, key=None):
 
     for x in range(length):
         indexes[x]=((key-1)-abs((key-1)-abs(x%((key-1)*2))))
-    print(indexes)
+    #print(indexes)
 
     for x in range(length):
         rows[indexes[x]].append(x)
-    print(rows)
+    #print(rows)
 
     for x in range(key):
         indexes2+=rows[x]
-    print(indexes2)
+    #print(indexes2)
 
     for x in range(length):
         indexes[(indexes2[x])]=string[x]
-    print(indexes)
+    #print(indexes)
 
-    decrypted= "".join(str (x) for x in indexes)
-    #for x in range(length):
-    #    decrypted+=indexes[x]
-    return decrypted
+    return "".join(str (x) for x in indexes)
     pass
 
 def columnTransCipher(string=None, key=None):
