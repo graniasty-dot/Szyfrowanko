@@ -65,7 +65,6 @@ def columnTransCipher(string=None, key=None):
 
     for x in range(len(key)):
         for y in range(x,len(key)):
-            print (seq[0][x],seq[0][y])
             if seq[0][x]>seq[0][y]:
                 #swap podmiana wierszy
                 seq[1][x],seq[1][y]=seq[1][y],seq[1][x]
@@ -84,15 +83,39 @@ def columnTransCipher(string=None, key=None):
             matrix[x]= ''.join((matrix[x],random.choice(string.upper())))
     
     #Zamiana kolumn
-    print(seq)
     for x in range(len(key)):
         ans[seq[1][x]]= matrix[x]
     
     return "".join(str (x) for x in ans)
     pass
 
-    #TODO: columnTransDecipher():
-def columnTransDecipher():
+    #DZIAŁA
+def columnTransDecipher(string=None, key=None):
+        #Utworzenie wiersza szyfrującego
+    seq = [x for x in key],[x for x in range(len(key))]
+
+    for x in range(len(key)):
+        for y in range(x,len(key)):
+            if seq[0][x]>seq[0][y]:
+                #swap podmiana wierszy
+                seq[1][x],seq[1][y]=seq[1][y],seq[1][x]
+    
+    #podział na wiersze
+    rowsnumber=math.ceil(len(string)/len(key))
+    matrix= ['' for x in range(len(key))]
+    ans= ['' for x in range(len(key))]
+    
+    for x in range((len(key))):
+        matrix[x]=string[x*(rowsnumber):(x+1)*rowsnumber]
+
+    #ustalenie kolejności
+    for x in range(len(key)):
+        ans[x]= matrix[seq[1][x]]
+    #odczyt wierszy
+    ansstr=""
+    for x in range(len(string)):
+        ansstr= ''.join((ansstr,ans[x%len(key)][math.floor(x/len(key))])) 
+    return ansstr
     pass
 
     #TODO:lookForCipher():
@@ -112,4 +135,6 @@ if __name__ == "__main__":
     print(decoded)
     encoded = columnTransCipher(anystring,'KABANOS')
     print(encoded)
+    decoded = columnTransDecipher(encoded,'KABANOS')
+    print (decoded)
     pass
