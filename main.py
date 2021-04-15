@@ -1,5 +1,6 @@
 import tkinter
 import cmath
+import string
     #DZIAŁA 
 def fenceCipher(string=None, key=None):
     """Funkcja szyfrujaca podany ciag znakow za pomoca szyfru ogrodzeniowego.
@@ -49,6 +50,8 @@ def fenceDecipher(string=None, key=None):
 
     return "".join(str (x) for x in indexes)
     pass
+
+
     #TODO:columnTransCipher(string=None, key=None):
 def columnTransCipher(string=None, key=None):
     """Funkcja szyfrujaca podany ciag znakow za pomoca transpozycji kolumnowej.
@@ -57,18 +60,26 @@ def columnTransCipher(string=None, key=None):
         string (str, optional): Ciag znakow do szyfrowania. Defaults to None.
         key (int, optional): Klucz szyfrujacy. Defaults to None.
     """
+
+
     pass
+
     #TODO: columnTransDecipher():
 def columnTransDecipher():
     pass
+
     #TODO:lookForCipher():
 def lookForCipher():
     pass
 
     #TODO:INTERFEJS
 if __name__ == "__main__":
+    anystring='AlA Ma KoTA       A kot ma \n\n ALE '
+    #proste parsowanie
+    anystring=anystring.upper() #Tylko wielkie litery
+    anystring=anystring.translate({ord(c):None for c in string.whitespace}) #Usuwanie znaków białych i końca linii
 
-    encoded=fenceCipher('ALAMAKOTAAKOTMAALE',4)
+    encoded=fenceCipher(anystring,4)
     print(encoded)
     decoded= fenceDecipher(encoded,4)
     print(decoded)
