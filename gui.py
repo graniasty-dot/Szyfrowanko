@@ -40,10 +40,11 @@ class MainWindow(tk.Tk):
         operation = ["Szyfrowanie", "Deszyfrowanie"]
         for val, x in enumerate(operation):
             tk.Radiobutton(self.settingsFrame, variable=self.chosenOperation, text=x, value=val).pack(padx=3, pady=3, anchor="w")
-        #Pole na szyfr
+        #Pole na hasło
         self.passphrase=tk.Text(self.settingsFrame,width=20,height=1)
-        self.passphrase.insert(tk.END, "Hasło")
+        self.passphrase.insert(tk.END, "Hasło",("h1"))
         self.passphrase.pack(padx=0, pady=0)
+        self.passphrase.tag_configure("h1",foreground="grey")
         #Ramka przycisku
         self.submitButton = tk.Button(self.buttonFrame, text="Szyfruj/Deszyfruj", font="Helvetica 12")
         self.submitButton.pack(padx=5, pady=5)
