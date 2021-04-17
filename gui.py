@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, ttk
+from tkinter import Label, ttk, messagebox
 import main as cipherLib
 
 
@@ -73,16 +73,18 @@ class MainWindow(tk.Tk):
             event.widget.delete(1.0, tk.END)
 
     def buttonClicked(self):
-        # TODO: Sprawdzanie poprawnosci wprowadzania danych, usuwanie znakow bialych, konwersja na wielkie/male litery
+        # TODO: Sprawdzanie poprawnosci wprowadzania danych, konwersja na wielkie/male litery
         chosenCipher = self.cipherChoose.get()
         password = self.passphrase.get()
         operation = self.chosenOperation.get()
         message = self.firstInput.get(1.0, tk.END)
-
+        message = self.stripWhitespace(message)
         if len(password) < 1:
+            messagebox.showwarning("Error", "Nie podano klucza/hasła!")
             print("Bad password")
             return
         if len(message) < 1:
+            messagebox.showwarning("Error", "Nie wprowadzono wiadomości!")
             print("No message found!")
             return
         answer = None
@@ -109,6 +111,9 @@ class MainWindow(tk.Tk):
         if answer != None:
             self.secondInput.delete(1.0, tk.END)
             self.secondInput.insert(tk.END, answer)
+
+    def stripWhitespace(self, string):
+        return "".join(string.split())
 
 
 if __name__ == "__main__":
