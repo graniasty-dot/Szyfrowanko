@@ -16,15 +16,15 @@ def fenceCipher(string=None, key=None):
     #generujemy nowe wiersze
     rows=["" for i in range(key)]
         #wpisujemy do listy
-    for x in range(length):
+    for x,letter in enumerate(string):
      #tutaj ogarnąć wzór na wpisywanie 
-        rows[abs((key-1)-abs((key-1)-abs(x%((key-1)*2))))]+=string[x]
+        rows[(key-1)-abs((key-1)-(x%((key-1)*2)))]+=letter
 
     encodedstring=""
     for x in range(key):
         encodedstring+=rows[x]
     return encodedstring
-    pass
+    
     #DZIAŁA
 def fenceDecipher(string=None, key=None):
     length=len(string)
@@ -33,7 +33,7 @@ def fenceDecipher(string=None, key=None):
     rows=[[] for i in range(key)]
 
     for x in range(length):
-        indexes[x]=((key-1)-abs((key-1)-abs(x%((key-1)*2))))
+        indexes[x]=(key-1)-abs((key-1)-(x%((key-1)*2)))
     #print(indexes)
 
     for x in range(length):
@@ -49,7 +49,7 @@ def fenceDecipher(string=None, key=None):
     #print(indexes)
 
     return "".join(str (x) for x in indexes)
-    pass
+    
 
 
     #DZIAŁĄ:
@@ -87,7 +87,7 @@ def columnTransCipher(string=None, key=None):
         ans[seq[1][x]]= matrix[x]
     
     return "".join(str (x) for x in ans)
-    pass
+    
 
     #DZIAŁA
 def columnTransDecipher(string=None, key=None):
@@ -116,7 +116,7 @@ def columnTransDecipher(string=None, key=None):
     for x in range(len(string)):
         ansstr= ''.join((ansstr,ans[x%len(key)][math.floor(x/len(key))])) 
     return ansstr
-    pass
+    
 
     #TODO:lookForCipher():
 def lookForCipher():
