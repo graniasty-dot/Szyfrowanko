@@ -80,9 +80,9 @@ class MainWindow(tk.Tk):
         message = self.firstInput.get(1.0, tk.END)
 
         if len(password) < 1:
-            print("Bad password")
+            print("Bad password2")
             return
-        if len(message) < 1:
+        if len(message) == 1:
             print("No message found!")
             return
         answer = None
