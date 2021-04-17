@@ -48,7 +48,6 @@ class MainWindow(tk.Tk):
         self.chosenOperation = tk.IntVar()
         operation = ["Szyfrowanie", "Deszyfrowanie"]
         for val, x in enumerate(operation):
-<<<<<<< HEAD
             tk.Radiobutton(self.settingsFrame, variable=self.chosenOperation, text=x, value=val).pack(padx=3, pady=3, anchor="w")
         #Pole na hasło
         self.passphrase=tk.Text(self.settingsFrame,width=20,height=1)
@@ -57,25 +56,6 @@ class MainWindow(tk.Tk):
         self.passphrase.tag_configure("h1",foreground="grey")
         #Ramka przycisku
         self.submitButton = tk.Button(self.buttonFrame, text="Szyfruj/Deszyfruj", font="Helvetica 12")
-=======
-            tk.Radiobutton(
-                self.settingsFrame, variable=self.chosenOperation, text=x, value=val
-            ).pack(padx=3, pady=3, anchor="w")
-        # Pole na szyfr
-        tk.Label(self.settingsFrame, text="Hasło / Klucz").pack(
-            padx=3, pady=3, anchor="w"
-        )
-        self.key = tk.StringVar()
-        self.passphrase = tk.Entry(self.settingsFrame, textvariable=self.key, width=20)
-        self.passphrase.pack(padx=0, pady=0)
-        # Ramka przycisku
-        self.submitButton = tk.Button(
-            self.buttonFrame,
-            text="Szyfruj/Deszyfruj",
-            font="Helvetica 12",
-            command=self.buttonClicked,
-        )
->>>>>>> dbfaa74eafb55fde700315b543fd1dc3339f898c
         self.submitButton.pack(padx=5, pady=5)
 
     def delPlaceholder(self, event):
