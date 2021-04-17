@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, ttk
+from tkinter import Label, ttk, messagebox
 import main as cipherLib
 
 
@@ -80,9 +80,11 @@ class MainWindow(tk.Tk):
         message = self.firstInput.get(1.0, tk.END)
 
         if len(password) < 1:
+            messagebox.showwarning("Error", "Nie wprowadzono klucza/hasła")
             print("Bad password")
             return
-        if len(message) < 1:
+        if len(message) <= 1:
+            messagebox.showwarning("Error", "Nie wprowadzono wiadomości do szyfrowania")
             print("No message found!")
             return
         answer = None
