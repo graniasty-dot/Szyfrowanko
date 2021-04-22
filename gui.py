@@ -6,13 +6,29 @@ import main as cipherLib
 class MainWindow(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.version = None
-        self.title = None
+        self.version = "v1.0"
+        self.window_title = "Szyfrowanie - ISTU"
+        self.title(self.window_title + " " + self.version)
+        self.menu = tk.Menu(self, tearoff=0)
+
+        filemenu = tk.Menu(self.menu, tearoff=0)
+        filemenu.add_command(label="Wczytaj z pliku")
+        filemenu.add_command(label="Zapisz do pliku")
+        self.menu.add_cascade(label="Plik", menu=filemenu)
+
+        aboutmenu = tk.Menu(self.menu, tearoff=0)
+        aboutmenu.add_command(label="Instrukcja")
+        aboutmenu.add_command(label="Autorzy")
+        self.menu.add_cascade(label="Pomoc", menu=aboutmenu)
+
+        self.config(menu=self.menu)
+        # self.aboutmenu = tk.Menu(self.menubar, tearoff=0)
+        # self.menubar.add_cascade(label="Pomoc", menu=self.menubar)
 
         # Ramki na elementy
         self.inputFrame = tk.Frame(self)
         self.inputFrame.grid(row=0, column=0, padx=7, pady=7)
-        tk.Label(self.inputFrame, text="Wprowadzanie", font="Helvetica 11 bold").pack(
+        tk.Label(self.inputFrame, text="Wejście", font="Helvetica 11 bold").pack(
             padx=3, pady=3, anchor="nw"
         )
 
@@ -29,6 +45,11 @@ class MainWindow(tk.Tk):
         self.firstInput = tk.Text(self.inputFrame, width=50, height=10)
         self.firstInput.insert(tk.END, "Tekst podstawowy")
         self.firstInput.pack(padx=3, pady=3)
+
+        tk.Label(self.inputFrame, text="Wynik", font="Helvetica 11 bold").pack(
+            padx=3, pady=3, anchor="nw"
+        )
+
         self.secondInput = tk.Text(self.inputFrame, width=50, height=10)
         self.secondInput.insert(tk.END, "Tekst zaszyfrowany")
         self.secondInput.pack(padx=3, pady=3)
