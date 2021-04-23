@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import Label, ttk, messagebox
 import main as cipherLib
+from tkinter import filedialog as fd
 
 
 class MainWindow(tk.Tk):
@@ -12,9 +13,10 @@ class MainWindow(tk.Tk):
         self.resizable(width=False, height=False)
         self.menu = tk.Menu(self, tearoff=0)
 
+        # Tworzenie menu
         filemenu = tk.Menu(self.menu, tearoff=0)
-        filemenu.add_command(label="Wczytaj z pliku")
-        filemenu.add_command(label="Zapisz do pliku")
+        filemenu.add_command(label="Wczytaj z pliku", command=self.importFromFile)
+        filemenu.add_command(label="Zapisz do pliku", command=self.exportToFile)
         self.menu.add_cascade(label="Plik", menu=filemenu)
 
         aboutmenu = tk.Menu(self.menu, tearoff=0)
@@ -112,10 +114,32 @@ class MainWindow(tk.Tk):
             event.widget.delete(1.0, tk.END)
 
     def importFromFile(self):
-        pass
+        file = fd.askopenfilenames(
+            title="Wczytaj plik", filetypes=[("Text file", ".txt")]
+        )[0]
+        if file != None:
+            print(file)
+            try:
+                with open(file, "r") as f:
+                    self.firstInput.delete(1.0, tk.END)
+                    self.firstInput.insert(tk.END, f.read())
+            except Exception as e:
+                messagebox.showerror(title="Nie można odczytać pliku", message=e)
+                print(e)
 
     def exportToFile(self):
-        pass
+        file = fd.asksaveasfilename(
+            title="Zapisz jako", filetypes=[("Text file", ".txt")]
+        )
+        if file != None:
+            print(file)
+            try:
+                with open(file + ".txt", "w") as f:
+                    output = self.secondInput.get(1.0, tk.END)
+                    f.write(output)
+            except Exception as e:
+                messagebox.showerror(title="Nie można zapisać pliku", message=e)
+                print(e)
 
     def buttonClicked(self):
         # TODO: Sprawdzanie poprawnosci wprowadzania danych, konwersja na wielkie/male litery
