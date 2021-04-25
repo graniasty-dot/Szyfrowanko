@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import Label, ttk, messagebox
 import main as cipherLib
 from tkinter import filedialog as fd
+import webbrowser as web
 
 
 class MainWindow(tk.Tk):
@@ -20,7 +21,7 @@ class MainWindow(tk.Tk):
         self.menu.add_cascade(label="Plik", menu=filemenu)
 
         aboutmenu = tk.Menu(self.menu, tearoff=0)
-        aboutmenu.add_command(label="Instrukcja")
+        aboutmenu.add_command(label="Instrukcja", command=self.openInstructions)
         aboutmenu.add_command(label="O programie", command=self.showAbout)
         self.menu.add_cascade(label="Pomoc", menu=aboutmenu)
 
@@ -107,6 +108,11 @@ class MainWindow(tk.Tk):
         tk.Button(window, text="Ok", width=20, command=window.destroy).pack(
             padx=3, pady=5
         )
+
+    def openInstructions(self):
+        answer = web.open(".\instructions.html")
+        if answer != True:
+            print("Cannot open instructions")
 
     def delPlaceholder(self, event):
         message = event.widget.get(1.0, tk.END)
