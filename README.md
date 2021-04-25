@@ -17,9 +17,11 @@ Przygotowana została na potrzeby przedmiotu "Informatyczne Systemy Tolerujące 
 # Sposób użycia
 
 ## __Szyfrowanie__
+
 Aby przeprowadzić operację szyfrowania należy do pola wejścia wprowadzić żądany ciąg znaków do szyfrowania.
 Następnie w sekcji ustawień należy wybrać żądany szyfr za pomocą listy rozwijanej, żądaną operację (szyfrowanie) i podać wybrany klucz. <br/>
-W przypadku szyfru ogrodzeniowego kluczem jest liczba całkowita, której wartość nie może być większa niż długość wprowadzonej wiadomości.
+W przypadku szyfru ogrodzeniowego kluczem jest liczba całkowita, której wartość nie może być większa niż długość wprowadzonej wiadomości. <br/>
+Ciąg znaków można również wprowadzić poprzez zaimportowanie pliku tekstowego. Wybieramy z menu "Plik" opcję wczytaj z pliku i wskazujemy wybrany plik txt.
 
 <b> Brak wprowadzonej wiadomości lub klucza spowoduje wyświetlenie okna błędu z informacją, które pole należy uzupełnić</b>
 <br><br/>

@@ -90,10 +90,13 @@ class MainWindow(tk.Tk):
         )
         self.submitButton.pack(padx=5, pady=5)
 
+    def openURL(self, url):
+        web.open_new(url)
+
     def showAbout(self):
-        text = """Aplikacja służy do szyfrowania i odszyfrowywania wiadomości korzystając z szyfru ogrodzeniowego lub szyfru transpozycji kolumnowej.\nAby dowiedzieć się jak korzystać z aplikacji naciśnij 'Instrukcja' w menu 'Pomoc' """
+        text = """Aplikacja służy do szyfrowania i odszyfrowywania wiadomości korzystając z szyfru ogrodzeniowego lub szyfru transpozycji kolumnowej.\nAby dowiedzieć się jak korzystać z aplikacji naciśnij 'Instrukcja' w menu 'Pomoc'."""
         window = tk.Toplevel(self)
-        window.geometry("300x200")
+        # window.geometry("300x250")
         window.resizable(width=False, height=False)
         window.title("O programie")
         tk.Label(window, text=self.window_title, font="Helvetica 11 bold").pack(
@@ -105,12 +108,20 @@ class MainWindow(tk.Tk):
             text="Autorzy: Paweł Szczepka, Tomasz Tendera",
             font="Helvetica 10 italic",
         ).pack(padx=3, pady=(3, 6), anchor=tk.CENTER)
+        link = tk.Label(
+            window, text="Github", font="Helvetica 10 italic", fg="blue", cursor="hand2"
+        )
+        link.pack(padx=3, pady=3, anchor=tk.CENTER)
+        link.bind(
+            "<Button-1>",
+            lambda x: self.openURL("https://github.com/graniasty-dot/Szyfrowanko"),
+        )
         tk.Button(window, text="Ok", width=20, command=window.destroy).pack(
             padx=3, pady=5
         )
 
     def openInstructions(self):
-        answer = web.open(".\instructions.html")
+        answer = web.open(".\\instructions.html")
         if answer != True:
             print("Cannot open instructions")
 
