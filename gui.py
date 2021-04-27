@@ -3,7 +3,7 @@ from tkinter import Label, ttk, messagebox
 import main as cipherLib
 from tkinter import filedialog as fd
 import webbrowser as web
-
+import string
 
 class MainWindow(tk.Tk):
     def __init__(self):
@@ -173,10 +173,23 @@ class MainWindow(tk.Tk):
             messagebox.showwarning("Error", "Nie wprowadzono wiadomości!")
             print("No message found!")
             return
+       
         answer = None
         if chosenCipher == self.ciphers[0]:
             # Ogrodzeniowy
+            if ((not password.isnumeric()) and (chosenCipher==self.ciphers[0])):
+
+                messagebox.showwarning("Error", "Klucz nie jest liczbą!")
+                print("Bad password")
+                return
+
             password = int(password)
+
+            if password<2:
+                messagebox.showwarning("Error", "Klucz jest za mały! \nPodaj większą liczbę.")
+                print("Bad password")
+                return
+
             if operation == 0:
                 # Szyfrowanie
                 answer = cipherLib.fenceCipher(message, password)
@@ -185,6 +198,13 @@ class MainWindow(tk.Tk):
                 answer = cipherLib.fenceDecipher(message, password)
         elif chosenCipher == self.ciphers[1]:
             # Transpozycyjny
+            if any(map(str.isdigit, password)):
+                messagebox.showwarning("Error", "Klucz zawiera cyfry!")
+                print("Bad password")
+                return
+
+            password = self.stripWhitespace(password)
+
             if operation == 0:
                 # Szyfrowanie
                 answer = cipherLib.columnTransCipher(message, password)
@@ -198,8 +218,9 @@ class MainWindow(tk.Tk):
             self.secondInput.delete(1.0, tk.END)
             self.secondInput.insert(tk.END, answer)
 
-    def stripWhitespace(self, string):
-        return "".join(string.split())
+    def stripWhitespace(self, msg):
+        msg = msg.upper()
+        return "".join(msg.split())
 
 
 if __name__ == "__main__":
