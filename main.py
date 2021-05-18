@@ -25,6 +25,15 @@ def fenceCipher(string=None, key=None):
 
 
 def fenceDecipher(string=None, key=None):
+    """Funkcja deszyfrujaca podany ciag znakow zaszyfrowanego szyfrem ogrodzeniowym.
+
+    Args:
+        string (str, optional): Zaszyfrowany ciag znakow. Defaults to None.
+        key (int, optional): Klucz deszyfrujacy. Defaults to None.
+
+    Returns:
+        [type]: [description]
+    """
     length = len(string)
     indexes = ["" for i in range(length)]
     indexes2 = []
@@ -86,6 +95,15 @@ def columnTransCipher(string=None, key=None):
 
 
 def columnTransDecipher(string=None, key=None):
+    """Funkcja deszyfrujaca ciag znakow zaszyfrowany za pomoca szyfru transpozycji kolumnowej.
+
+    Args:
+        string (str, optional): Zaszyfrowany ciag znakow. Defaults to None.
+        key (str, optional): Slowo szyfrujace. Defaults to None.
+
+    Returns:
+        str: Odszyfrowana wiadomosc
+    """
     # Utworzenie wiersza szyfrującego
     seq = [x for x in key], [x for x in range(len(key))]
 
