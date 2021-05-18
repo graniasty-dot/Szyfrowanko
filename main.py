@@ -1,10 +1,8 @@
-import tkinter
-import cmath
 import string
 import math
 import random
 
-# DZIAŁA
+
 def fenceCipher(string=None, key=None):
     """Funkcja szyfrujaca podany ciag znakow za pomoca szyfru ogrodzeniowego.
     
@@ -18,15 +16,12 @@ def fenceCipher(string=None, key=None):
     rows = ["" for i in range(key)]
     # wpisujemy do listy
     for x, letter in enumerate(string):
-        # tutaj ogarnąć wzór na wpisywanie
         rows[(key - 1) - abs((key - 1) - (x % ((key - 1) * 2)))] += letter
 
     encodedstring = ""
     for x in range(key):
         encodedstring += rows[x]
     return encodedstring
-
-    # DZIAŁA
 
 
 def fenceDecipher(string=None, key=None):
@@ -52,8 +47,6 @@ def fenceDecipher(string=None, key=None):
     # print(indexes)
 
     return "".join(str(x) for x in indexes)
-
-    # DZIAŁĄ:
 
 
 def columnTransCipher(string=None, key=None):
@@ -91,8 +84,6 @@ def columnTransCipher(string=None, key=None):
 
     return "".join(str(x) for x in ans)
 
-    # DZIAŁA
-
 
 def columnTransDecipher(string=None, key=None):
     # Utworzenie wiersza szyfrującego
@@ -120,14 +111,6 @@ def columnTransDecipher(string=None, key=None):
     for x in range(len(string)):
         ansstr = "".join((ansstr, ans[x % len(key)][math.floor(x / len(key))]))
     return ansstr
-
-    # TODO:lookForCipher():
-
-
-def lookForCipher():
-    pass
-
-    # TODO:INTERFEJS
 
 
 if __name__ == "__main__":
